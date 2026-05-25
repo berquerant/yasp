@@ -9,6 +9,8 @@ import (
 	"io"
 	"log/slog"
 	"os"
+
+	"github.com/berquerant/yasp/internal/metric"
 )
 
 func Main(ctx context.Context, stdout io.Writer, stdin io.Reader, args ...string) int {
@@ -138,6 +140,8 @@ func (m *mainRunner) load(ctx context.Context, stdin io.Reader, meta *Map) (*Doc
 }
 
 func (m *mainRunner) runMain(ctx context.Context, stdout io.Writer, stdin io.Reader, meta *Map) error {
+	metric.Reset()
+
 	documents, err := m.load(ctx, stdin, meta)
 	if err != nil {
 		return err
