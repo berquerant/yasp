@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"al.essio.dev/pkg/shellescape"
 	"github.com/spf13/pflag"
 )
 
@@ -153,12 +152,6 @@ func parseFlags(args ...string) (*Config, error) {
 	}
 	if !c.Bulk && c.IDTemplate == "" {
 		return nil, fmt.Errorf("%w: no id template", ErrInvalidConfig)
-	}
-	c.Shell = shellescape.Quote(c.Shell)
-	c.Kubectl = shellescape.Quote(c.Kubectl)
-	c.Helm = shellescape.Quote(c.Helm)
-	for i := range c.Cmds {
-		c.Cmds[i] = shellescape.Quote(c.Cmds[i])
 	}
 
 	return &c, nil
