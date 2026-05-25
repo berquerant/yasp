@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"maps"
 	"strings"
 
 	"github.com/berquerant/yasp/internal/metric"
@@ -180,9 +181,7 @@ func (r *Result) writeYaml(ctx context.Context, w io.Writer) error {
 		if err := item.Result.Err; err != nil {
 			result[i]["err"] = err.Error()
 		}
-		for k, v := range r.meta.SortedValues() {
-			result[i][k] = v
-		}
+		maps.Insert(result[i], r.meta.SortedValues())
 	}
 	b, err := NewYamlMarshaler(2, true).Marshal(ctx, result)
 	if err != nil {
