@@ -67,7 +67,7 @@ func (m *mainRunner) runHelm(ctx context.Context, stdout io.Writer) error {
 		})
 		stdin := bytes.NewBufferString(h.Data)
 		if err := m.runMain(ctx, stdout, stdin, meta); err != nil {
-			errs = append(errs, err)
+			errs = append(errs, fmt.Errorf("%w: chart=%s", err, h.ChartDir))
 		}
 	}
 
@@ -90,7 +90,7 @@ func (m *mainRunner) runKustomize(ctx context.Context, stdout io.Writer) error {
 		})
 		stdin := bytes.NewBufferString(k.Data)
 		if err := m.runMain(ctx, stdout, stdin, meta); err != nil {
-			errs = append(errs, err)
+			errs = append(errs, fmt.Errorf("%w: kustomize=%s", err, k.KustomizeDir))
 		}
 	}
 
