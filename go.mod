@@ -1,15 +1,18 @@
 module github.com/berquerant/yasp
 
-go 1.26.3
+go 1.27.3
 
 require (
-	al.essio.dev/pkg/shellescape v1.6.0 // indirect
+	al.essio.dev/pkg/shellescape v1.6.0
+	github.com/expr-lang/expr v1.17.8
+	github.com/goccy/go-yaml v1.19.2
+	github.com/spf13/pflag v1.0.10
+	github.com/stretchr/testify v1.11.1
+)
+
+require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/expr-lang/expr v1.17.8 // indirect
-	github.com/goccy/go-yaml v1.19.2 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/spf13/pflag v1.0.10 // indirect
-	github.com/stretchr/testify v1.11.1 // indirect
 	golang.org/x/mod v0.35.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/sys v0.43.0 // indirect
