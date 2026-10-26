@@ -3,7 +3,7 @@ module github.com/berquerant/yasp
 go 1.27.3
 
 require (
-	al.essio.dev/pkg/shellescape v1.6.0
+	al.essio.dev/pkg/shellescape v1.6.1
 	github.com/expr-lang/expr v1.17.8
 	github.com/goccy/go-yaml v1.19.2
 	github.com/spf13/pflag v1.0.10
