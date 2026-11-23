@@ -15,34 +15,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Lint
-    timeout-minutes: 5
+  ci:
     permissions:
-      contents: read
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7.0.1
-        with:
-          persist-credentials: "false"
-      - name: Setup go
-        uses: $/.github/actions/setup-go
-      - name: Lint
-        run: make lint
-
-  test:
-    name: Test
-    timeout-minutes: 5
-    permissions:
-      contents: read
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7.0.1
-        with:
-          persist-credentials: "false"
-      - name: Setup go
-        uses: $/.github/actions/setup-go
-      - name: Test
-        run: make test
+      contents: read # checkout repository for Go CI
+    uses: berquerant/reusable-workflows/.github/workflows/go-ci.yml@v0.6.0
+    with:
+      lint-command: make lint
+      test-command: make test
+      timeout-minutes: 5
